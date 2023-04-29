@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: ee20fb31a75243a4e91fba5cc3573464, type: 3}
   id: sword
-  type: 5
+  type: 0
