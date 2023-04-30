@@ -7,8 +7,16 @@ public class Fog : MonoBehaviour
     public bool canPlayerSee = false;
     public bool wasSeenWithGPS = false;
 
+    [Range(0.0f, 1.0f)]
+    public float LightsOn = 0;
+    public float TurnOnSpeed = 1;
+
+    [Range(0.0f, 1.0f)]
+    public float LightsOff = 1;
+    public float TurnOffSpeed = 1;
+
     private bool isTurningOn = false;
-    private bool isTurningOff = false;
+    private bool isTurningOff = true;
 
     private SpriteRenderer spriteRenderer;
 
@@ -23,9 +31,9 @@ public class Fog : MonoBehaviour
         {
             Color color = spriteRenderer.color;
             float value = color.a;
-            value -= Time.deltaTime;
-            if(value < 0) {
-                value = 0;
+            value -= Time.deltaTime * TurnOnSpeed;
+            if(value < LightsOn) {
+                value = LightsOn;
                 isTurningOn = false;
             }
             color.a = value;
@@ -35,9 +43,9 @@ public class Fog : MonoBehaviour
         {
             Color color = spriteRenderer.color;
             float value = color.a;
-            value += Time.deltaTime;
-            if(value > 1) {
-                value = 1;
+            value += Time.deltaTime * TurnOffSpeed;
+            if(value > LightsOff) {
+                value = LightsOff;
                 isTurningOff = false;
             }
             color.a = value;
@@ -47,7 +55,7 @@ public class Fog : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Player" && !canPlayerSee)
+        if(col.tag == "Player")
         {
             TurnLightOn();
         }
@@ -65,6 +73,7 @@ public class Fog : MonoBehaviour
     {
         canPlayerSee = true;
         isTurningOn = true;
+        isTurningOff = false;
 
         if(player_script.instance.playerHasAGPS) wasSeenWithGPS = true;
 
@@ -75,6 +84,7 @@ public class Fog : MonoBehaviour
     {
         canPlayerSee = false;
         isTurningOff = true;
+        isTurningOn = false;
 
         //Refreash();
     }

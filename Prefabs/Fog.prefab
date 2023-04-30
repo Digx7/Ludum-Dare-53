@@ -126,3 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPlayerSee: 0
   wasSeenWithGPS: 0
+  LightsOn: 0
+  TurnOnSpeed: 10
+  LightsOff: 0.99
+  TurnOffSpeed: 0.2

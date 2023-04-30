@@ -83,6 +83,24 @@ public class WaveManager : MonoBehaviour
             enemyIndex++;
         }
 
+        StartCoroutine(waitForAllEnemiesToBeDead());
+    }
+
+    private IEnumerator waitForAllEnemiesToBeDead()
+    {
+        bool enemiesLive = true;
+
+        do
+        {
+            yield return new WaitForSeconds(1);
+            fiend[] allEnemies = FindObjectsOfType<fiend>();
+            if(allEnemies.Length == 0)
+            {
+                enemiesLive = false;
+            }
+            
+        } while (enemiesLive);
+
         index++;
         OnAnyWaveFinish.Invoke();
     }
