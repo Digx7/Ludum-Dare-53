@@ -15,7 +15,7 @@ public class WaveManager : MonoBehaviour
 
     [Header("Start/Finish Events")]
     public UnityEvent<float> OnAnyWaveStart;
-    public UnityEvent OnAnyWaveFinish, OnAllNormalWavesDone, OnLastWaveStart, OnLastWaveFinish;
+    public UnityEvent OnAnyEnemiesStartSpawning, OnAnyWaveFinish, OnAllNormalWavesDone, OnLastWaveStart, OnLastWaveFinish;
 
     private bool isRunning = false;
 
@@ -75,6 +75,8 @@ public class WaveManager : MonoBehaviour
     private IEnumerator RunWave(Wave wave)
     {
         int enemyIndex = 0;
+
+        OnAnyEnemiesStartSpawning.Invoke();
 
         while(enemyIndex < wave.enemies.Count)
         {

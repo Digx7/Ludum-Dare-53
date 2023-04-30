@@ -45,8 +45,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartOnAwake: 1
-  waves: []
+  normalWaves: []
+  lastWave:
+    timeBeforeWaveStarts: 0
+    enemies: []
+    spawnRate: 0
   index: 0
-  OnWavesDone:
+  OnAnyWaveStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAnyWaveFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAllNormalWavesDone:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLastWaveStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLastWaveFinish:
     m_PersistentCalls:
       m_Calls: []

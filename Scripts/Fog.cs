@@ -6,17 +6,11 @@ public class Fog : MonoBehaviour
 {
     public bool canPlayerSee = false;
     public bool wasSeenWithGPS = false;
-
-    [Range(0.0f, 1.0f)]
-    public float LightsOn = 0;
-    public float TurnOnSpeed = 1;
-
-    [Range(0.0f, 1.0f)]
-    public float LightsOff = 1;
-    public float TurnOffSpeed = 1;
+    public float turnOnSpeed = 1f;
+    public float turnOffSpeed = 1;
 
     private bool isTurningOn = false;
-    private bool isTurningOff = true;
+    private bool isTurningOff = false;
 
     private SpriteRenderer spriteRenderer;
 
@@ -31,9 +25,9 @@ public class Fog : MonoBehaviour
         {
             Color color = spriteRenderer.color;
             float value = color.a;
-            value -= Time.deltaTime * TurnOnSpeed;
-            if(value < LightsOn) {
-                value = LightsOn;
+            value -= Time.deltaTime*turnOnSpeed;
+            if(value < 0) {
+                value = 0;
                 isTurningOn = false;
             }
             color.a = value;
@@ -43,9 +37,9 @@ public class Fog : MonoBehaviour
         {
             Color color = spriteRenderer.color;
             float value = color.a;
-            value += Time.deltaTime * TurnOffSpeed;
-            if(value > LightsOff) {
-                value = LightsOff;
+            value += Time.deltaTime * turnOffSpeed;
+            if(value > 1) {
+                value = 1;
                 isTurningOff = false;
             }
             color.a = value;
@@ -55,7 +49,7 @@ public class Fog : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Player")
+        if(col.tag == "Vision" && !canPlayerSee)
         {
             TurnLightOn();
         }
@@ -63,7 +57,7 @@ public class Fog : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if(col.tag == "Player" && !wasSeenWithGPS)
+        if(col.tag == "Vision" && !wasSeenWithGPS)
         {
             TurnLightOff();
         }
@@ -75,7 +69,8 @@ public class Fog : MonoBehaviour
         isTurningOn = true;
         isTurningOff = false;
 
-        if(player_script.instance.playerHasAGPS) wasSeenWithGPS = true;
+
+        if (player_script.instance.playerHasAGPS) wasSeenWithGPS = true;
 
         //Refreash();
     }
@@ -85,6 +80,7 @@ public class Fog : MonoBehaviour
         canPlayerSee = false;
         isTurningOff = true;
         isTurningOn = false;
+
 
         //Refreash();
     }

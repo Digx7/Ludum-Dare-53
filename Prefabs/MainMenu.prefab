@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00f5f7d52b078a4f9f5eb34d884ca25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameOfMainGameScene: SampleScene
+  NameOfMainGameScene: GamePlay
   mainMenuObject: {fileID: 3606876472392352516}
   creditsMenuObject: {fileID: 3606876473519155195}
   quitMenuObject: {fileID: 3606876472981710791}
@@ -1942,7 +1942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1095456026625690027, guid: a7d4a11b597a0494381c3258d0ab1f20, type: 3}
       propertyPath: m_text
-      value: D'erp's Delevery Debacle
+      value: D'erp's Delivery Debacle
       objectReference: {fileID: 0}
     - target: {fileID: 1095456026625690027, guid: a7d4a11b597a0494381c3258d0ab1f20, type: 3}
       propertyPath: m_lineSpacing
