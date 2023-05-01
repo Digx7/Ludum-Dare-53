@@ -12,6 +12,8 @@ public enum ItemType
 public class Item : ScriptableObject
 {
    public Sprite sprite;
+
+   public Color color = Color.white;
    public string id; 
    public ItemType type;
 }

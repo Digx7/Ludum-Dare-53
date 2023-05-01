@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Resource
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 39f8c55ecd11c44459b46f9917635185, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
   id: 
   type: 0

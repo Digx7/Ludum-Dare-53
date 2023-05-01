@@ -10,7 +10,17 @@ public class ItemDetector : MonoBehaviour
 
     public UnityEvent OnItemDetected;
 
-    private void OnTriggerExit2D(Collider2D col)
+    private void Start()
+    {
+        player_script.instance.OnDropAllItems.AddListener(TryToDetectItem);
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        TryToDetectItem();
+    }
+
+    public void TryToDetectItem()
     {
         ItemOnGroundHandler[] itemsOnGround = FindObjectsOfType<ItemOnGroundHandler>();
         

@@ -6,7 +6,7 @@ using UnityEngine;
 public class ItemOnGroundHandler : MonoBehaviour
 {
     public Item item;
-
+    public Sprite sprite;
     public GameObject arrow;
 
     private bool isBeingLookedAt = false;
@@ -24,6 +24,7 @@ public class ItemOnGroundHandler : MonoBehaviour
     public void Refreash()
     {
         GetComponent<SpriteRenderer>().sprite = item.sprite;
+        GetComponent<SpriteRenderer>().color = item.color;
     }
 
     private void OnTriggerEnter2D(Collider2D col)

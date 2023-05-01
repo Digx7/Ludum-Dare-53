@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 0394648098e1a6b46b9ed19854ea1d7d, type: 2}
+  sprite: {fileID: 0}
   arrow: {fileID: 1663679535807986703}
 --- !u!212 &1230772130206709631
 SpriteRenderer:

@@ -9,7 +9,7 @@ using TMPro;
 
 public enum MainMenuState
 {
-    main, credits, quit
+    main, howToPlay, credits, quit
 }
 
 public class MainMenu : MonoBehaviour
@@ -21,11 +21,11 @@ public class MainMenu : MonoBehaviour
 
     [Header("Menus")]
     [SerializeField] private GameObject mainMenuObject;
-    [SerializeField] private GameObject creditsMenuObject, quitMenuObject;
+    [SerializeField] private GameObject howToPlayMenuObject, creditsMenuObject, quitMenuObject;
 
     [Header("Buttons Selected")]
-    [SerializeField] private GameObject creditsExitButton;
-    [SerializeField] private GameObject quitExitButton, creditsEnterButton, quitEnterButton;
+    [SerializeField] private GameObject howToPlayExitButton;
+    [SerializeField] private GameObject creditsExitButton, quitExitButton, howToPlayEnterButton, creditsEnterButton, quitEnterButton;
 
     [Header("Other")]
     [SerializeField] private TextMeshProUGUI LegalAndBuildInfo;
@@ -58,6 +58,9 @@ public class MainMenu : MonoBehaviour
             case MainMenuState.main:
                 OnQuitClicked();
                 break;
+            case MainMenuState.howToPlay:
+                OnHowToPlayExited();
+                break;
             case MainMenuState.credits:
                 OnCreditsExit();
                 break;
@@ -72,6 +75,26 @@ public class MainMenu : MonoBehaviour
     public void OnPlayClicked()
     {
         SceneManager.LoadSceneAsync(NameOfMainGameScene);
+    }
+
+    public void OnHowToPlayClicked()
+    {
+        currentState = MainMenuState.howToPlay;
+
+        mainMenuObject.SetActive(false);
+        howToPlayMenuObject.SetActive(true);
+
+        StartCoroutine(setSelected(howToPlayEnterButton));
+    }
+
+    public void OnHowToPlayExited()
+    {
+        currentState = MainMenuState.main;
+
+        mainMenuObject.SetActive(true);
+        howToPlayMenuObject.SetActive(false);
+
+        StartCoroutine(setSelected(howToPlayExitButton));
     }
 
     public void OnCreditsClicked()
